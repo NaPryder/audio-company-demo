@@ -15,18 +15,18 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-deep-navy [--ring:var(--surface)]">
       <div className="mx-auto flex h-[68px] max-w-site items-center justify-between px-6 lg:h-[76px] lg:px-[150px]">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex min-w-0 items-center gap-3">
           <span
             aria-hidden="true"
             className="grid size-11 shrink-0 place-items-center rounded-sm bg-maroon text-[15px]/[20px] font-bold text-surface"
           >
             OB
           </span>
-          <span className="flex flex-col">
-            <span className="text-[13px]/[18px] font-bold text-surface lg:text-[15px]/[20px]">
+          <span className="flex min-w-0 flex-col">
+            <span className="text-[12px]/[16px] font-bold text-surface lg:text-[15px]/[20px]">
               {company.name}
             </span>
-            <span className="text-[10px]/[14px] text-card-meta lg:text-[11px]/[16px]">
+            <span className="hidden text-card-meta lg:block lg:text-[11px]/[16px]">
               {company.tagline}
             </span>
           </span>

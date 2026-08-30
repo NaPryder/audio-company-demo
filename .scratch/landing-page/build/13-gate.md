@@ -1,7 +1,7 @@
 # B13 - gate ปิดงาน
 
 Blocked by: B12
-Status: todo
+Status: done
 
 - `pnpm lint` + `pnpm test` + `pnpm build` ด้วย Node 26 **แล้วซ้ำด้วย Node 24** (prod = `nodejs24.x` ไม่ใช่ 26)
 - screenshot 5 route × 2 breakpoint (1440×900 / 390×844) ผ่าน Chrome MCP

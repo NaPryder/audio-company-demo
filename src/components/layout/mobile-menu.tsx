@@ -29,7 +29,7 @@ export function MobileMenu({ links }: { links: readonly NavLink[] }) {
           dialogRef.current?.showModal();
           setOpen(true);
         }}
-        className="h-11 w-[62px] rounded-sm border border-white/25 text-[13px]/[19px] font-bold text-surface lg:hidden"
+        className="h-11 w-[62px] shrink-0 rounded-sm border border-white/25 text-[13px]/[19px] font-bold text-surface lg:hidden"
       >
         เมนู
       </button>

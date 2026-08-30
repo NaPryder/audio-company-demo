@@ -51,6 +51,24 @@ spec §7 เขียน `logo: StaticImageData | null`
 ถ้าไม่เปิด `images.dangerouslyAllowSVG` - เปิดแล้วเท่ากับยอมให้ SVG ที่มี script วิ่งผ่าน optimizer
 type ใหม่จึงตรงกับปลายทางมากกว่าของเดิม และวันเปลี่ยนโลโก้จริงคือแทนที่ไฟล์ตรง ๆ ไม่ต้องแก้โค้ด
 
+## สิ่งที่ตรวจแล้วผ่าน (B13)
+
+| | ผล |
+|---|---|
+| `pnpm lint` · `pnpm test` (26 เทสต์) · `pnpm build` บน **Node 26.8.1** | ผ่าน |
+| ชุดเดียวกันบน **Node 24.20.0** (= `nodejs24.x` ที่ Vercel Functions รันจริง) | ผ่าน |
+| ไม่มี `dark:` · `.dark` · `@custom-variant dark` · `prefers-color-scheme` เหลือใน `src/` | ผ่าน |
+| ไม่มีโน้ตของคนออกแบบหลุดลงหน้าเว็บทั้ง 5 route | ผ่าน |
+| 5 route ตอบ 200 · title, canonical, sitemap, robots, JSON-LD ถูกต้อง | ผ่าน |
+| เมนู mobile: `aria-expanded` สลับ, focus เข้า dialog, ปิดแล้ว focus กลับปุ่มเปิด | ผ่าน |
+| ฟอร์ม: เบอร์ผิด → `aria-invalid` + `aria-describedby` + `role="alert"` พร้อมข้อความถูก | ผ่าน |
+| ฟอร์ม: ส่งสำเร็จ → แผงขอบคุณแทนที่การ์ดทั้งใบ + focus ย้ายไปที่แผง + อีเมลออกด้วยเบอร์ `0812345678` | ผ่าน |
+
+**หมายเหตุเรื่องวิธีตรวจ**: Chrome extension ของ Claude ต่อไม่ได้ตลอด session
+เลยตรวจผ่าน Chrome headless + CDP (`Emulation.setDeviceMetricsOverride`) แทน
+screenshot ที่ถ่ายด้วย `--window-size` + `--force-device-scale-factor` ตรง ๆ **เชื่อไม่ได้** -
+มันทำ layout viewport เพี้ยนจนปุ่มเมนูหายไปจากภาพทั้งที่จริง ๆ อยู่ที่ x=304 ตามสเปกเป๊ะ
+
 ## Checklist
 
 - [ ] **เปลี่ยนรูป 8 ใบเป็นรูปโครงการจริงที่ได้รับอนุญาต** (ไม่ใช่แค่ดึงจาก Figma)
