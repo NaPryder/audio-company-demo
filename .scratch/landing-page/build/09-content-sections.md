@@ -1,7 +1,7 @@
 # B09 - Portfolio / Brands / Editorial sections
 
 Blocked by: B05, B06
-Status: todo
+Status: done
 
 `sizes` ทุกจุดตาม [spec §9](../spec.md)
 
