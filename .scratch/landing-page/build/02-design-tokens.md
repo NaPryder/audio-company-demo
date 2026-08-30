@@ -1,7 +1,7 @@
 # B02 - design tokens + font
 
 Blocked by: B01
-Status: todo
+Status: done
 
 ## งาน
 
