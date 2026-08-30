@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# committed on purpose - ค่าเป็น mock ทั้งหมด
+!.env.example

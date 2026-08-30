@@ -1,7 +1,7 @@
 # B03 - env + lib ร่วม
 
 Blocked by: B01
-Status: todo
+Status: done
 
 ## งาน
 
