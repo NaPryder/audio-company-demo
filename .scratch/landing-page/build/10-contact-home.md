@@ -1,7 +1,7 @@
 # B10 - Contact section + ประกอบหน้า Home
 
 Blocked by: B07, B09
-Status: todo
+Status: done
 
 ## ContactSection (ใช้ทั้ง Home และ `/contact` ทั้งดุ้น ไม่ต้องแตะ)
 
