@@ -1,7 +1,7 @@
 # B06 - layout components
 
 Blocked by: B02, B03
-Status: todo
+Status: done
 
 container ทุกที่: `mx-auto max-w-[1440px] px-6 lg:px-[150px]`
 
