@@ -1,7 +1,7 @@
 # B04 - export assets จาก Figma
 
 Blocked by: B01
-Status: todo
+Status: done (placeholder - ดู gate.md)
 
 Figma `ekB4HSBNX3pRNvcCFELQQC`.
 ⚠️ asset URL หมดอายุ 7 วัน - `curl` ลงเครื่องทันที **ห้ามอ้าง URL ในโค้ด**
