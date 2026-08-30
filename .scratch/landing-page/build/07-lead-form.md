@@ -1,7 +1,7 @@
 # B07 - lead form
 
 Blocked by: B03
-Status: todo
+Status: done
 
 ตาม [spec §8](../spec.md) ทุกบรรทัด
 
