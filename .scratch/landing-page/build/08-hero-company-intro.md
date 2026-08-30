@@ -1,7 +1,7 @@
 # B08 - Hero + Company Intro
 
 Blocked by: B05, B06
-Status: todo
+Status: done
 
 ## Hero
 
