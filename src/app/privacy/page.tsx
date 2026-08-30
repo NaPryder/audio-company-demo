@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
+
 import { PageHeader } from "@/components/layout/page-header";
 import { company } from "@/features/contact/company";
+
+export const metadata: Metadata = {
+  title: "ประกาศความเป็นส่วนตัว",
+  description:
+    "วิธีที่เราเก็บและใช้ข้อมูลที่คุณกรอกผ่านแบบฟอร์มติดต่อ",
+  alternates: { canonical: "/privacy" },
+};
 
 /**
  * ⚠️ เป็นร่างที่ยังไม่ผ่านการตรวจของผู้มีคุณสมบัติ และยังไม่มีวันที่ประกาศใช้

@@ -1,7 +1,7 @@
 # B12 - metadata + SEO
 
 Blocked by: B11
-Status: todo
+Status: done
 
 ตาม [spec §9](../spec.md)
 
