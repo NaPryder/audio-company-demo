@@ -1,7 +1,7 @@
 # B05 - content data model
 
 Blocked by: B04
-Status: todo
+Status: done
 
 ตาม [spec §7](../spec.md) + ตาราง ⚠️ ใน §12.
 **ทุกค่าที่ทำเครื่องหมาย ⚠️ ให้ใส่ comment `// ⚠️ ยังไม่ยืนยันกับ Figma` คาไว้ในโค้ด**

@@ -35,6 +35,13 @@ gate ตัวจริงคือ **เปลี่ยนเป็นรูป
 [ticket 07](../issues/07-asset-and-seo-strategy.md) สรุปไว้ - ไม่ใช่ raster จาก Figma
 เพราะ raster บนจอ retina เบลอเห็นชัด
 
+## 🚨 `youtubeId` ทั้ง 3 เป็นค่าสมมติ
+
+สเปกไม่เคยระบุวิดีโอจริงสักตัว `src/features/editorial/data.ts` จึงใส่ `PLACEHOLDER01-03` ไว้
+thumbnail จาก `i.ytimg.com` จะโหลดไม่ขึ้นทั้ง `maxresdefault` และ `hqdefault`
+`VideoCard` มี fallback ชั้นที่สองเป็นแผ่นทึบพร้อมชื่อเรื่องรองรับไว้แล้ว แต่**ต้องใส่ id จริงก่อน production**
+ชื่อเรื่องทั้ง 3 ก็เป็นค่าสมมติเช่นกัน
+
 ## เบี่ยงจากสเปก: `Brand.logo` เป็น path ไม่ใช่ `StaticImageData`
 
 spec §7 เขียน `logo: StaticImageData | null`
@@ -49,6 +56,7 @@ type ใหม่จึงตรงกับปลายทางมากกว
 - [ ] **เปลี่ยนรูป 8 ใบเป็นรูปโครงการจริงที่ได้รับอนุญาต** (ไม่ใช่แค่ดึงจาก Figma)
 - [ ] เขียน alt text ไทยใหม่ให้ตรงกับรูปจริง
 - [ ] **เปลี่ยนโลโก้ 6 ไฟล์เป็น SVG จาก press kit ของแบรนด์**
+- [ ] **ใส่ `youtubeId` และชื่อวิดีโอจริงทั้ง 3 ตัว**
 - [ ] ใส่ค่า env จริงทั้ง 12 ตัว (ตอนนี้ mock หมด)
 - [ ] verify โดเมนกับ Resend ก่อนจึงส่งเมลได้
 - [ ] ให้ผู้มีคุณสมบัติตรวจร่าง Privacy Notice + ใส่วันที่
