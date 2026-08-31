@@ -53,5 +53,24 @@
   }
 }
 
+@layer components {
+  /* HTML ที่ marked พ่นออกมาไม่มี class ให้เกาะ - Tailwind utility จึงใช้ไม่ได้ ต้องเป็น CSS ตรง ๆ
+     ชื่อไม่ใช่ .prose เพราะกันชนกับ @tailwindcss/typography วันที่ลง (ไม่ลงตอนนี้ ไม่ได้ห้ามตลอดไป)
+     ค่าทั้งหมดถอดมาจากหน้า /privacy ไม่มีค่าไหนตั้งใหม่ */
+  .markdown-body { font-size: 17px; line-height: 28px; color: var(--muted-fg); }
+  .markdown-body > * + * { margin-top: 16px; }
+  .markdown-body > :first-child { margin-top: 0; }
+  .markdown-body h2 { margin-top: 32px; font-size: 18px; line-height: 25px; font-weight: 700; color: var(--ink); }
+  .markdown-body h3 { margin-top: 24px; font-size: 17px; line-height: 28px; font-weight: 700; color: var(--ink); }
+  .markdown-body h2 + *, .markdown-body h3 + * { margin-top: 8px; }
+  .markdown-body ul { list-style: disc; padding-left: 24px; }
+  .markdown-body ol { list-style: decimal; padding-left: 24px; }
+  .markdown-body li + li { margin-top: 4px; }
+  .markdown-body strong { font-weight: 700; color: var(--ink); }
+  /* ขีดเส้นใต้ ต่างจาก /privacy ที่ใช้สีอย่างเดียว - ลิงก์ที่นี่อยู่กลางย่อหน้า
+     แยกด้วยสีอย่างเดียวไม่ผ่าน WCAG 1.4.1 */
+  .markdown-body a { color: var(--burgundy); text-decoration: underline; text-underline-offset: 2px; }
+}
+
 :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }

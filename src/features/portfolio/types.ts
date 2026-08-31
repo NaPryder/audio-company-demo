@@ -16,10 +16,12 @@ export const PROJECT_CATEGORIES = [
 export type ProjectCategory = (typeof PROJECT_CATEGORIES)[number];
 
 export type Project = {
-  /** ยังไม่ใช้ใน v1 - เตรียมไว้ให้ /portfolio/[slug] */
+  /** ใช้เป็น path ของ /portfolio/[slug] และเป็นชื่อไฟล์ใน content/ */
   slug: string;
   title: string;
   category: ProjectCategory;
+  /** คำโปรย 1 ประโยค แสดงใต้ h1 ของหน้า detail - ไม่ใช่ meta description */
+  description: string;
   image: StaticImageData;
   imageAlt: string;
   /** ซ่อนเสมอใน v1 เพราะ NDA - ดู gate.md */
