@@ -88,9 +88,10 @@ screenshot ที่ถ่ายด้วย `--window-size` + `--force-device-s
 
 ## เพิ่มจาก `/portfolio/[slug]` ([spec](../../portfolio-detail/spec.md) §12)
 
-- [ ] **เปลี่ยนเนื้อหา 6 ไฟล์ใน `src/features/portfolio/content/` เป็นเนื้อหาโครงการจริง** — ตอนนี้เป็นเรื่องแต่งทั้งหมด ไม่มีโครงการไหนอ้างอิงงานที่เกิดขึ้นจริง
+- [ ] **เปลี่ยนเนื้อหา 6 ไฟล์ใน `src/features/portfolio/content/` เป็นเนื้อหาโครงการจริง** - ตอนนี้เป็นเรื่องแต่งทั้งหมด ไม่มีโครงการไหนอ้างอิงงานที่เกิดขึ้นจริง
 - [ ] เปลี่ยน `description` 6 ตัวใน `data.ts` พร้อมกัน
-- [ ] ลบ `<!-- MOCK: ... -->` บรรทัดแรกของทุกไฟล์เมื่อเนื้อหาจริงเข้ามา — comment ที่ค้างอยู่กับเนื้อหาจริงจะทำให้คนอ่านเข้าใจผิดกลับด้าน
-- [ ] **ทำ SEO ของ 6 หน้าที่ยกไว้** (Q15) — `description`, `openGraph`, `alternates.canonical`, JSON-LD `CreativeWork`, `BreadcrumbList`, เพิ่ม 6 route ใน `sitemap.ts`
+- [ ] ลบ `<!-- MOCK: ... -->` บรรทัดแรกของทุกไฟล์เมื่อเนื้อหาจริงเข้ามา - comment ที่ค้างอยู่กับเนื้อหาจริงจะทำให้คนอ่านเข้าใจผิดกลับด้าน
+- [ ] **ทำ SEO ของ 6 หน้าที่ยกไว้** (Q15) - `description`, `openGraph`, JSON-LD `CreativeWork`, `BreadcrumbList`, เพิ่ม 6 route ใน `sitemap.ts`
+  ยกเว้น `alternates.canonical` ที่ทำไปแล้วตอน build เพราะไม่ใส่แปลว่าสืบทอดของ root layout มาชี้หน้าแรก ซึ่งแย่กว่าไม่มี canonical
 - [ ] ทบทวนว่าหน้าที่เนื้อหายังบางควร `noindex` ไหม (Q14 เลื่อนไว้)
-- [ ] ตัดสินใจเรื่อง `em` ในเนื้อหาภาษาไทย (`auditorium-sound.md`) — synthetic oblique ของ Noto Sans Thai อ่านยากกว่าอังกฤษมาก ยังไม่มีใครดูของจริง
+- [ ] ตัดสินใจเรื่อง `em` ในเนื้อหาภาษาไทย (`auditorium-sound.md`) - synthetic oblique ของ Noto Sans Thai อ่านยากกว่าอังกฤษมาก ยังไม่มีใครดูของจริง

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { SectionHeading } from "@/components/layout/section-heading";
 import { ContactSection } from "@/features/contact/contact-section";
@@ -25,33 +26,55 @@ export function generateStaticParams() {
   return PROJECTS.map(({ slug }) => ({ slug }));
 }
 
-/** มีแค่ `title` เพราะเป็นชื่อแท็บ - SEO ทั้งชุดยกไปรอบที่มีเนื้อหาจริง (ดู gate.md) */
+/**
+ * SEO ทั้งชุดยกไปรอบที่มีเนื้อหาจริง (ดู gate.md) - ที่นี่มีแค่ 2 อย่าง
+ *
+ * `title` เพราะเป็นชื่อแท็บ ไม่ใช่ SEO
+ * `canonical` เพราะ metadata ของ Next สืบทอด field ที่ลูกไม่ได้ตั้ง - ไม่ใส่แปลว่า
+ * ทั้ง 6 หน้าจะประกาศ canonical เป็นหน้าแรกตาม root layout ซึ่งแย่กว่าไม่มี canonical เลย
+ */
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  return { title: PROJECTS.find((project) => project.slug === slug)!.title };
+  const project = PROJECTS.find((item) => item.slug === slug);
+  if (!project) notFound();
+
+  return {
+    title: project.title,
+    alternates: { canonical: `/portfolio/${slug}` },
+  };
 }
 
 export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
   const index = PROJECTS.findIndex((project) => project.slug === slug);
+  // `dynamicParams = false` กันไว้ชั้นหนึ่งแล้ว แต่ชั้นนั้นหายไปทันทีที่หน้าเปลี่ยนเป็น ISR
+  // หรือ dynamic - ถ้าไม่มีบรรทัดนี้ `PROJECTS[-1]` จะทำให้หน้าโยน 500 แทนที่จะตอบ 404
+  if (index === -1) notFound();
+
   const project = PROJECTS[index];
   const body = await renderProjectBody(slug);
-  // 3 ตัวถัดไปวนกลับหัว - deterministic ไม่มีกรณี "หมวดนี้มีใบเดียว" ให้ต้องเขียน fallback
-  const others = [1, 2, 3].map((n) => PROJECTS[(index + n) % PROJECTS.length]);
+  // เรียงต่อจากตัวปัจจุบันแล้ววนกลับหัว - ตัวปัจจุบันไม่มีทางติดมาเองเพราะถูกตัดตั้งแต่ตอน slice
+  // ไม่มีกรณี "หมวดนี้มีใบเดียว" ให้ต้องเขียน fallback และเหลือน้อยกว่า 3 ใบก็ยังเรนเดอร์ได้
+  const others = [...PROJECTS.slice(index + 1), ...PROJECTS.slice(0, index)].slice(0, 3);
 
   return (
     <>
       <div className="mx-auto max-w-site px-6 pt-16 lg:px-[150px] lg:pt-24">
         {/* ตัวคั่นเป็น <li aria-hidden> ไม่ใช่ ::before เพราะ pseudo-element content
-            บาง screen reader อ่านออกเสียง · ตัวสุดท้ายไม่เป็นลิงก์ */}
+            บาง screen reader อ่านออกเสียง · ตัวสุดท้ายไม่เป็นลิงก์
+            ลิงก์ขีดเส้นใต้ด้วยเหตุผลเดียวกับลิงก์ในเนื้อหา - ต่างจากตัวสุดท้ายแค่สีไม่ผ่าน WCAG 1.4.1 */}
         <nav aria-label="เส้นทางนำทาง" className="text-[12px]/[18px] text-muted">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
-              <Link href="/">หน้าแรก</Link>
+              <Link href="/" className="underline underline-offset-2 hover:text-ink">
+                หน้าแรก
+              </Link>
             </li>
             <li aria-hidden="true">›</li>
             <li>
-              <Link href="/portfolio">ผลงาน</Link>
+              <Link href="/portfolio" className="underline underline-offset-2 hover:text-ink">
+                ผลงาน
+              </Link>
             </li>
             <li aria-hidden="true">›</li>
             <li>

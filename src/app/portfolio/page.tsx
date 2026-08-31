@@ -16,7 +16,8 @@ export default function PortfolioPage() {
     <>
       <PageHeader eyebrow="SELECTED WORK" title="ผลงานติดตั้ง" />
       <div className="mx-auto max-w-site px-6 pt-10 pb-16 lg:px-[150px] lg:pb-24">
-        <ProjectGrid projects={PROJECTS} />
+        {/* กริดอยู่ใต้ h1 ของ PageHeader ตรง ๆ ไม่มีหัวข้อ section คั่น การ์ดจึงเป็น h2 */}
+        <ProjectGrid projects={PROJECTS} cardAs="h2" />
       </div>
     </>
   );

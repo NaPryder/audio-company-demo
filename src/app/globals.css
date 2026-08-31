@@ -72,5 +72,10 @@
   .markdown-body a { color: var(--burgundy); text-decoration: underline; text-underline-offset: 2px; }
 }
 
-:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+/* อยู่ใน @layer base เพื่อให้ utility อย่าง `outline-none` ทับได้
+   ประกาศนอก layer จะชนะทุก utility ไม่ว่า specificity เท่าไร แล้ว focus ring
+   ของ stretched link ใน ProjectCard จะซ้อนกับ ring ของทั้งใบเป็นสองวง */
+@layer base {
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }
