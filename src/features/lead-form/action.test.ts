@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import { company } from "@/features/contact/company";
+
 const sendLeadEmail = vi.fn();
 let clientIp = "5.5.5.5";
 
@@ -51,7 +53,8 @@ describe("submitLead", () => {
     expect(second.ok).toBe(false);
     if (second.ok) return;
     expect(second.fieldErrors).toBeUndefined();
-    expect(second.message).toContain("02-123-4567");
+    // อ่านจาก env ชุดเดียวกับที่ action ใช้ - hardcode ไว้แล้วเทสต์พังทุกครั้งที่ CONTACT_PHONE เปลี่ยน
+    expect(second.message).toContain(company.phoneDisplay);
     expect(sendLeadEmail).toHaveBeenCalledTimes(1);
   });
 
