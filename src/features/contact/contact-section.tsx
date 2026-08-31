@@ -8,8 +8,10 @@ import { company } from "./company";
  *
  * ไม่มี File Upload block - Q4 ตัด field ไฟล์แนบทิ้งทั้งหมด
  * description ก็ตัดคำว่า "หรือแนบแบบห้อง" ออกจาก copy เดิมด้วยเหตุผลเดียวกัน
+ *
+ * `as` มีไว้เพราะ /contact ไม่ได้ใช้ `PageHeader` - หัวข้อของ section นี้คือ h1 ของหน้านั้น
  */
-export function ContactSection() {
+export function ContactSection({ as = "h2" }: { as?: "h1" | "h2" }) {
   const channels = [
     { label: "อีเมล", value: company.email, href: `mailto:${company.email}` },
     { label: "โทรศัพท์", value: company.phoneDisplay, href: `tel:${company.phone}` },
@@ -27,6 +29,7 @@ export function ContactSection() {
       <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
         <div className="lg:w-[410px] lg:shrink-0">
           <SectionHeading
+            as={as}
             eyebrow="START A CONVERSATION"
             title="เล่าให้เราฟังเกี่ยวกับพื้นที่ของคุณ"
             description="ส่งข้อมูลเบื้องต้นเกี่ยวกับพื้นที่ของคุณ เพื่อให้ทีมงานติดต่อกลับและช่วยประเมินแนวทางต่อไป"
