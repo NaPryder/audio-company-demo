@@ -37,7 +37,7 @@ export function VideoCard({ video, className }: { video: Video; className?: stri
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={thumbnail(video.youtubeId, quality)}
+          src={video.thumbnail ?? thumbnail(video.youtubeId, quality)}
           alt=""
           width={366}
           height={300}

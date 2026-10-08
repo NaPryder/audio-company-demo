@@ -29,7 +29,6 @@ export function ArticleCard({ article, size = "sm", className }: ArticleCardProp
         alt={article.imageAlt}
         fill
         sizes={SIZES[size]}
-        placeholder="blur"
         className="object-cover"
       />
       <div className="absolute inset-x-0 bottom-0 bg-[rgba(3,8,20,0.9)] px-5 py-4">
