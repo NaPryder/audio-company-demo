@@ -5,16 +5,16 @@ import { notFound } from "next/navigation";
 
 import { SectionHeading } from "@/components/layout/section-heading";
 import { ContactSection } from "@/features/contact/contact-section";
-import { renderProjectBody } from "@/features/portfolio/content";
 import { PROJECTS } from "@/features/portfolio/data";
 import { ProjectGrid } from "@/features/portfolio/project-grid";
+import { renderMarkdownFile } from "@/lib/markdown";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
 /**
  * slug นอกลิสต์ตอบ 404 ให้เอง ไม่ต้องเรียก `notFound()`
  *
- * ⚠️ ผลพ่วง: ทั้ง 6 หน้าถูก prerender ตอน build → `fs` ใน `renderProjectBody`
+ * ⚠️ ผลพ่วง: ทั้ง 6 หน้าถูก prerender ตอน build → `fs` ใน `renderMarkdownFile`
  * อ่านไฟล์ตอน build เท่านั้น ไม่เคยอ่านตอน runtime
  * วันไหนเปลี่ยนหน้านี้เป็น ISR / dynamic / เปิด Cache Components (`dynamicParams` ใช้ไม่ได้เมื่อเปิด)
  * หน้าจะพังตอน runtime เพราะไฟล์ใต้ `src/` ไม่ถูกก๊อปเข้า deployment output ของ Vercel
@@ -52,7 +52,7 @@ export default async function ProjectPage({ params }: PageProps) {
   if (index === -1) notFound();
 
   const project = PROJECTS[index];
-  const body = await renderProjectBody(slug);
+  const body = await renderMarkdownFile("src/features/portfolio/content", slug);
   // เรียงต่อจากตัวปัจจุบันแล้ววนกลับหัว - ตัวปัจจุบันไม่มีทางติดมาเองเพราะถูกตัดตั้งแต่ตอน slice
   // ไม่มีกรณี "หมวดนี้มีใบเดียว" ให้ต้องเขียน fallback และเหลือน้อยกว่า 3 ใบก็ยังเรนเดอร์ได้
   const others = [...PROJECTS.slice(index + 1), ...PROJECTS.slice(0, index)].slice(0, 3);
@@ -111,7 +111,7 @@ export default async function ProjectPage({ params }: PageProps) {
         </div>
 
         {/* 760 ไม่ใช่ 1140 - ค่าเดียวกับ /privacy บรรทัดยาว 1140px ที่ 17px อ่านไม่ไหว
-            เนื้อหามาจากไฟล์ .md ของเราเองและแปลงตอน build ไม่มี input จากผู้ใช้ - ดู content.ts */}
+            เนื้อหามาจากไฟล์ .md ของเราเองและแปลงตอน build ไม่มี input จากผู้ใช้ - ดู `src/lib/markdown.ts` */}
         <div
           className="markdown-body mt-10 max-w-[760px] lg:mt-12"
           dangerouslySetInnerHTML={{ __html: body }}

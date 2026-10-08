@@ -1,6 +1,11 @@
-/** การ์ดบทความกดไม่ได้ใน v1 - ยังไม่มีหน้าปลายทาง จึงไม่มี slug หรือ href */
 export type Article = {
+  /** ใช้เป็น path `/knowledge/[slug]` และชื่อไฟล์ใน `content/` - ห้ามเป็น `videos` */
+  slug: string;
+  /** หมวดภาษาไทย แสดงเป็น eyebrow บนหน้าบทความ */
+  category: string;
   title: string;
+  /** คำโปรย 1-2 บรรทัดใต้หัวเรื่อง */
+  description: string;
   /** path ใต้ `public/` */
   image: string;
   imageAlt: string;

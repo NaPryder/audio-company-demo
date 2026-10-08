@@ -95,3 +95,10 @@ screenshot ที่ถ่ายด้วย `--window-size` + `--force-device-s
   ยกเว้น `alternates.canonical` ที่ทำไปแล้วตอน build เพราะไม่ใส่แปลว่าสืบทอดของ root layout มาชี้หน้าแรก ซึ่งแย่กว่าไม่มี canonical
 - [ ] ทบทวนว่าหน้าที่เนื้อหายังบางควร `noindex` ไหม (Q14 เลื่อนไว้)
 - [ ] ตัดสินใจเรื่อง `em` ในเนื้อหาภาษาไทย (`auditorium-sound.md`) - synthetic oblique ของ Noto Sans Thai อ่านยากกว่าอังกฤษมาก ยังไม่มีใครดูของจริง
+
+## เพิ่มจาก `/knowledge`
+
+- [ ] **ให้ทีมงานตรวจหรือเขียนใหม่ 3 ไฟล์ใน `src/features/knowledge/content/`** - เป็นความรู้ทั่วไปของงาน AV ที่ Claude เขียน ไม่ได้มาจากประสบการณ์หน้างานของบริษัท แต่หัว section คือ "ความรู้จากการทำงานจริง"
+- [ ] เปลี่ยน `category` และ `description` 3 ตัวใน `src/features/knowledge/data.ts` พร้อมกัน
+- [ ] ลบ `<!-- MOCK: ... -->` บรรทัดแรกของทุกไฟล์เมื่อเนื้อหาจริงเข้ามา
+- [ ] ทำ SEO ของ 3 หน้าบทความ (`description`, `openGraph`, JSON-LD `Article`, `BreadcrumbList`) และเพิ่ม `/knowledge/[slug]` ใน `sitemap.ts`

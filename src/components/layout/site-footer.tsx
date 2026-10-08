@@ -29,16 +29,16 @@ export function SiteFooter() {
             </p>
           </div>
 
-          <nav aria-label="ลิงก์ท้ายเว็บ" className="lg:w-[420px]">
-            <ul className="flex flex-col gap-3 lg:flex-row lg:justify-end lg:gap-10">
+          <nav aria-label="ลิงก์ท้ายเว็บ" className="lg:flex-1">
+            <ul className="flex flex-col gap-3 lg:flex-row lg:flex-wrap lg:justify-end lg:gap-x-10">
               {NAV_LINKS.map((link) => (
-                <li key={link.href}>
+                <li key={link.href} className="whitespace-nowrap">
                   <Link href={link.href} className="text-[15px]/[22px] font-bold hover:text-card-meta">
                     {link.label}
                   </Link>
                 </li>
               ))}
-              <li>
+              <li className="whitespace-nowrap">
                 <Link href="/privacy" className="text-[15px]/[22px] font-bold hover:text-card-meta">
                   ประกาศความเป็นส่วนตัว
                 </Link>

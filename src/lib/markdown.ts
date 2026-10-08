@@ -20,30 +20,30 @@ import { Marked } from "marked";
  */
 const markdown = new Marked({ renderer: { html: () => "" } });
 
-const CONTENT_DIR = path.join(process.cwd(), "src/features/portfolio/content");
-
 export function renderMarkdown(raw: string) {
   return markdown.parse(raw, { async: false });
 }
 
 /**
+ * อ่าน `<dir>/<slug>.md` แล้วแปลงเป็น HTML · `dir` เป็น path เทียบกับ root ของ repo
+ *
  * คืน "" เมื่อไม่มีไฟล์ - หน้ายังเรนเดอร์ได้ตามปกติ แค่ไม่มีเนื้อหา
  *
  * slug ถูกจำกัดรูปแบบก่อนต่อเป็น path - `path.join` ย่อ `..` ให้เฉย ๆ ไม่ได้ปฏิเสธ
  * ตอนนี้ `dynamicParams = false` กันไว้อีกชั้นแล้ว แต่ฟังก์ชันนี้ export ออกไปรับ `string`
  * และชั้นนั้นจะหายไปทันทีที่หน้าเปลี่ยนเป็น ISR หรือ dynamic
  */
-export async function renderProjectBody(slug: string): Promise<string> {
+export async function renderMarkdownFile(dir: string, slug: string): Promise<string> {
   if (!/^[a-z0-9-]+$/.test(slug)) {
-    console.warn(`[portfolio] slug ไม่ถูกรูปแบบ: ${slug}`);
+    console.warn(`[markdown] slug ไม่ถูกรูปแบบ: ${slug}`);
     return "";
   }
 
   let raw: string;
   try {
-    raw = await readFile(path.join(CONTENT_DIR, `${slug}.md`), "utf8");
+    raw = await readFile(path.join(process.cwd(), dir, `${slug}.md`), "utf8");
   } catch {
-    console.warn(`[portfolio] ไม่พบ ${slug}.md - หน้าจะไม่มีเนื้อหา`);
+    console.warn(`[markdown] ไม่พบ ${dir}/${slug}.md - หน้าจะไม่มีเนื้อหา`);
     return "";
   }
   return renderMarkdown(raw);

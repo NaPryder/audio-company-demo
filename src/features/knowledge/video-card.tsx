@@ -18,7 +18,16 @@ const thumbnail = (id: string, quality: "maxresdefault" | "hqdefault") =>
  * ชั้นที่สองจำเป็นเพราะ `youtubeId` ตอนนี้ยังเป็นค่าสมมติ ทั้งสอง URL จึงโหลดไม่ขึ้น
  * ถ้าไม่มีมันหน้าแรกจะโชว์ไอคอนรูปพังสามใบ (ดู gate.md)
  */
-export function VideoCard({ video, className }: { video: Video; className?: string }) {
+export function VideoCard({
+  video,
+  as: Heading = "h3",
+  className,
+}: {
+  video: Video;
+  /** ระดับหัวข้อ - หน้า /knowledge/videos วางกริดใต้ h1 ตรง ๆ จึงต้องส่ง "h2" */
+  as?: "h2" | "h3";
+  className?: string;
+}) {
   const [quality, setQuality] = useState<"maxresdefault" | "hqdefault">("maxresdefault");
   const [unavailable, setUnavailable] = useState(false);
 
@@ -54,9 +63,9 @@ export function VideoCard({ video, className }: { video: Video; className?: stri
         <p className="text-[11px]/[16px] font-bold text-card-meta">
           <span lang="en">YOUTUBE</span>
         </p>
-        <h3 className="mt-[5px] text-[18px]/[25px] font-bold text-surface group-hover:underline">
+        <Heading className="mt-[5px] text-[18px]/[25px] font-bold text-surface group-hover:underline">
           {video.title}
-        </h3>
+        </Heading>
       </div>
     </a>
   );
