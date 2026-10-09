@@ -6,12 +6,12 @@ import Link from "next/link";
  * คำนวณจากกรณีตัวอักษรขาวตกทับส่วนที่สว่างที่สุดของรูป (ticket 10)
  *
  * desktop: ตาม reference (.scratch/landing-page/reference-hero.webp) - พื้น deep-navy
- * รูปลอยชิดขวา ขอบซ้าย/ล่างจางด้วย CSS mask แทน overlay ข้อความส่วนใหญ่จึงตกบนพื้นทึบ
+ * รูปลอยด้านขวา เว้นขอบขวาเท่า gutter ของเนื้อหา (150px) ขอบซ้าย/ล่าง/ขวาจางด้วย CSS mask แทน overlay ข้อความส่วนใหญ่จึงตกบนพื้นทึบ
  */
 export function Hero() {
   return (
     <section className="relative isolate h-[540px] overflow-hidden bg-deep-navy lg:h-[650px]">
-      <div className="absolute inset-0 lg:left-[33%] lg:mask-b-from-75% lg:mask-l-from-55%">
+      <div className="absolute inset-0 lg:right-[150px] lg:left-[33%] lg:mask-b-from-75% lg:mask-l-from-55% lg:mask-r-from-85%">
         <Image
           src="/hero/hero-image.webp"
           alt="ห้องประชุมที่ติดตั้งระบบเสียงและภาพ"
